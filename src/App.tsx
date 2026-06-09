@@ -9,9 +9,9 @@ import LoginPage from "./pages/LoginPage";
 import AllGamesPage from "./pages/AllGamesPage";
 
 function App() {
+
   return (
     <>
-  
     <NavbarMeny />
       <div className="app-wrapper">
     <Routes>
