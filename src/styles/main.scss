@@ -2,3 +2,7 @@
 @use "./base/global";
 
 @use "./pages/allGamesPage";
+@use "./pages/homePage";
+
+@use "./components/gameCarousel";
+@use "./components/genresListPreview";

@@ -1,0 +1,19 @@
+.game-carousel {
+
+  h2 {
+    padding-bottom: 1rem;
+    padding-top: 1rem;
+  }
+
+  &__text {
+    display: flex;
+    justify-content: space-between;
+    
+  }
+
+&__list {
+display: flex;
+overflow-x: auto;
+gap: 1rem;
+}
+}
