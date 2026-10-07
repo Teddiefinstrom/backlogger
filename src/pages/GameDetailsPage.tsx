@@ -4,25 +4,41 @@ import { getGame } from "../services/rawg";
 import { useParams } from "react-router-dom";
 
 const GameDetailsPage = () => {
+  const [error, setError] = useState<string | null>(null);
+  const [loading, setLoading] = useState(true);
   const [game, setGame] = useState<GameRawg>();
   const { id } = useParams();
 
   useEffect(() => {
     const fetchGame = async () => {
-      if (!id) {
-        throw new Error("Could not find game with that id");
-      }
+      try {
+        if (!id) {
+          throw new Error("Could not find game with that id");
+        }
 
-      const gameId = Number(id);
-      const data = await getGame(gameId);
-      setGame(data);
+        const gameId = Number(id);
+        const data = await getGame(gameId);
+        setGame(data);
+      } catch (error) {
+        if (error instanceof Error) {
+          setError(error.message);
+        }
+      } finally {
+        setLoading(false);
+      }
     };
 
     fetchGame();
   }, [id]);
 
-  if (!game) {
+  if (loading) {
     return <p>Loading...</p>;
+  }
+
+  if (error) return <div>Error: {error}</div>;
+
+  if (!game) {
+    return <p>Game not found</p>;
   }
 
   return (
